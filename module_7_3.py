@@ -53,9 +53,27 @@ class WordsFinder:
         return all_words
 
     def find(self, word):
-        pass
+        self.word = word
+        dict = {}
+        for name, words in self.get_all_words().items():
+            dict[name] = words.index(word.lower()) + 1
+            return dict
 
     def count(self, word):
-        pass
-# finder2 = WordsFinder('test_file.txt')
-# print(finder2.get_all_words())
+        self.word = word
+        dict = {}
+        for name, words in self.get_all_words().items():
+            dict[name] = words.count(word.lower())
+            return dict
+
+
+if __name__ == '__main__':
+    finder2 = WordsFinder('test_file.txt')
+    print(finder2.get_all_words())
+    print(finder2.find('TEXT'))  # 3 слово по счёту
+    print(finder2.count('teXT'))  # 4 слова teXT в тексте всего
+
+    finder1 = WordsFinder('test_file2.txt')
+    print(finder1.get_all_words())
+    print(finder1.find('captain'))
+    print(finder1.count('captain'))
